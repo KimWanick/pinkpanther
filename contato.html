@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - SENAI</title>
+
+    <style>
+        /*
+         * Todas as regras CSS para centralizar e adaptar à tela estão aqui.
+         */
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0; /* Remove qualquer margem padrão do body */
+            padding: 0; /* Remove qualquer padding padrão do body */
+            width: 100%; /* Garante que o body ocupe 100% da largura disponível */
+            overflow-x: hidden; /* ESSA LINHA É CHAVE - Impede rolagem horizontal */
+            display: flex; /* Habilita Flexbox no body */
+            justify-content: center; /* Centraliza o conteúdo horizontalmente */
+            align-items: flex-start; /* Alinha o conteúdo ao topo, evitando que ele se estique verticalmente */
+            min-height: 100vh; /* Garante que o body ocupe a altura mínima da viewport */
+        }
+
+        /* Container principal que agrupa todo o conteúdo do site */
+        .principal {
+            width: 100%; /* Ocupa 100% da largura disponível dentro do body flexbox */
+            max-width: 1200px; /* Define uma largura máxima para o conteúdo principal */
+            /* A propriedade margin: 0 auto; não é estritamente necessária aqui se o body for flexbox e estiver centralizando,
+               mas mantê-la não causa problemas e pode servir como fallback */
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            overflow: hidden; /* Garante que elementos filhos não ultrapassem as bordas arredondadas */
+            display: flex; /* Define como flex para organizar topo, corpo e rodapé em coluna */
+            flex-direction: column; /* Organiza os itens verticalmente */
+            min-height: 100vh; /* Garante que o container principal ocupe toda a altura */
+        }
+
+        /* Estilos do topo (header) */
+        .topo {
+            background-color: #004080;
+            color: #d82020;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topo .logo a {
+            color: #ffffff;
+            font-size: 2.2em;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .topo .menu a {
+            color: #ffffff;
+            margin-left: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .topo .menu a:hover {
+            color: #d1c4e9;
+        }
+
+        /* Estilos do corpo principal */
+        .corpo {
+            padding: 40px;
+            background-color: #e8eaf6;
+            flex-grow: 1; /* Permite que o corpo se expanda para preencher o espaço disponível */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Estilos do formulário */
+        .formulario {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            box-sizing: border-box; /* Inclui padding e border no width/height total */
+            text-align: center;
+        }
+
+        .formulario h2 {
+            color:#004080;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+        }
+
+        .formulario label {
+            display: block;
+            text-align: left;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .formatacamposdetexto,
+        .formatatextarea {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 1px solid #c5cae9;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 1em;
+            color: #333;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .formatacamposdetexto:focus,
+        .formatatextarea:focus {
+            border-color:#004080;
+            box-shadow: 0 0 5px rgba(92, 107, 192, 0.4);
+        }
+
+        .formatatextarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .formulario button {
+            background-color:#004080;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .formulario button:hover {
+            background-color: #9fa8da;
+            transform: translateY(-2px);
+        }
+
+        .formulario form {
+            margin-top: 0;
+        }
+
+        /* Removi a regra para <br /> porque você já está usando display: block nas labels,
+           o que já faz as quebras de linha automaticamente para os campos. */
+        /* Se você realmente precisar de <br> no HTML para espaçamento, descomente a regra abaixo */
+        /*
+        .formulario form br {
+            margin-bottom: 5px;
+            line-height: 1;
+        }
+        */
+
+        /* Estilo para o texto "Esqueceu a SENHA?" */
+        .formulario form > div {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .formulario form > div a {
+            color: #5c6bc0;
+            text-decoratio#004080n: none;
+        }
+
+        .formulario form > div a:hover {
+            text-decoration: underline;
+        }
+
+        /* Ajuste para o rodapé */
+        .rodape {
+            background-color:#004080;
+            color: #e8eaf6;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.95em;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            margin-top: auto; /* Garante que o rodapé "grude" no final do container principal */
+        }
+
+        /* Media Queries para Responsividade */
+        @media (max-width: 768px) {
+            .topo {
+                flex-direction: column;
+                padding: 15px 20px;
+            }
+            .topo .menu {
+                margin-top: 10px;
+            }
+            .topo .menu a {
+                margin: 0 10px;
+            }
+            .corpo {
+                padding: 20px;
+            }
+            .formulario {
+                max-width: 90%; /* Permite que o formulário ocupe mais espaço em telas pequenas */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .topo .logo a {
+                font-size: 1.8em;
+            }
+            .topo .menu a {
+                font-size: 0.9em;
+            }
+            .formulario {
+                padding: 20px;
+            }
+            .formulario h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="principal">
+        <header class="topo">
+            <div class="logo">
+                <a href="index.html">SENAI</a>
+            </div>
+            <nav class="menu">
+                <a href="sobre.html">SOBRE</a>
+                <a href="cursos.html">CURSOS</a>
+                <a href="contato.html">CONTATO</a>
+            </nav>
+        </header>
+
+        <main class="corpo">
+            <div class="formulario">
+                <h2>Contate-nos</h2>
+                <form name="form_contato" action="#" method="POST">
+                    <label for="idnome">Nome:</label>
+                    <input type="text" class="formatacamposdetexto" name="nome" id="idnome" placeholder="Seu nome completo" required />
+
+                    <label for="idemail">E-mail:</label>
+                    <input type="email" class="formatacamposdetexto" name="email" id="idemail" placeholder="seu.email@exemplo.com" required />
+
+                    <label for="idmensagem">Mensagem:</label>
+                    <textarea class="formatatextarea" name="mensagem" id="idmensagem" placeholder="Digite sua mensagem aqui..." rows="5" required></textarea>
+
+                    <button type="submit">ENVIAR</button>
+
+                    <div>
+                        <a href="recuperar_senha.html">Esqueceu a SENHA?</a>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <footer class="rodape">
+            &copy; 2025 SENAI - Serviço Nacional de Aprendizagem Industrial
+        </footer>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos - SENAI</title>
+    <style>
+        /* Estilos globais para centralização e ajuste da tela */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0; /* Remove margem padrão do body */
+            padding: 0; /* Remove padding padrão do body */
+            width: 100%; /* Garante que o body ocupe 100% da largura */
+            overflow-x: hidden; /* ESSA LINHA É CHAVE: Impede rolagem horizontal */
+            
+            display: flex; /* Habilita Flexbox no body */
+            justify-content: center; /* Centraliza o conteúdo (div.principal) horizontalmente */
+            align-items: flex-start; /* Alinha o conteúdo ao topo, evitando esticamento vertical */
+            min-height: 100vh; /* Garante que o body ocupe a altura mínima da viewport */
+        }
+
+        /* Container principal que agrupa todo o conteúdo do site */
+        .principal {
+            width: 100%; /* Ocupa 100% da largura disponível dentro do body flexbox */
+            max-width: 1200px; /* Largura máxima para o site em telas grandes */
+            margin: 0 auto; /* Ajuda na centralização e como fallback */
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px; /* Cantos arredondados */
+            overflow: hidden; /* Garante que os cantos arredondados sejam respeitados */
+
+            display: flex; /* Define como flex para organizar topo, corpo e rodapé em coluna */
+            flex-direction: column; /* Organiza os itens verticalmente */
+            min-height: 100vh; /* Garante que o container principal ocupe toda a altura */
+        }
+
+        /* Estilos do topo (header) */
+        .topo {
+            background-color: #004080; /* Azul escuro SENAI */
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        .topo .logo a {
+            color: white;
+            font-size: 2em;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .topo .menu a {
+            color: white;
+            margin-left: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .topo .menu a:hover {
+            color: #ffc107; /* Amarelo no hover para os links do menu */
+        }
+
+        /* Estilos do corpo (main) para a página de Cursos */
+        .corpo {
+            padding: 40px 20px; /* Mais padding superior/inferior para o corpo */
+            background-color: #e3f2fd; /* Azul pastel claro para o fundo do corpo */
+            text-align: center; /* Centraliza o H1 */
+            flex-grow: 1; /* Permite que o corpo se expanda para preencher o espaço disponível */
+        }
+
+        .corpo h1 {
+            font-size: 2.8em; /* Título maior para a página de Cursos */
+            color: #004080;
+            margin-bottom: 40px; /* Mais espaço abaixo do título */
+        }
+
+        /* CONTÊINER PRINCIPAL DOS CURSOS (para organizá-los em grade) */
+        .cursos-container {
+            display: grid; /* Usa CSS Grid para criar colunas */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Colunas flexíveis */
+            gap: 30px; /* Espaçamento entre os containers de curso */
+            max-width: 1000px; /* Largura máxima para a grade de cursos */
+            margin: 0 auto; /* Centraliza a grade de cursos dentro do corpo */
+            padding: 20px; /* Espaçamento interno dentro do container de cursos */
+        }
+
+        /* ESTILOS PARA CADA ITEM DE CURSO (O CARD INDIVIDUAL) */
+        .curso-item {
+            background-color: #ffffff; /* Fundo branco para cada cartão de curso */
+            border: 1px solid #cceeff; /* Borda suave azul clara */
+            border-radius: 10px; /* Cantos arredondados */
+            padding: 25px;
+            text-align: left; /* Alinha o texto dentro do cartão à esquerda */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Sombra mais pronunciada */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição suave ao passar o mouse */
+        }
+
+        .curso-item:hover {
+            transform: translateY(-5px); /* Efeito de "levantar" ao passar o mouse */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Sombra mais forte no hover */
+        }
+
+        .curso-item h2 {
+            font-size: 1.6em; /* Título do curso */
+            color: #004080;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .curso-item p {
+            font-size: 0.95em; /* Tamanho da fonte da descrição */
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .curso-item .saiba-mais {
+            display: inline-block; /* Transforma o link em um "botão" */
+            background-color: #4CAF50; /* Verde pastel para o botão */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .curso-item .saiba-mais:hover {
+            background-color: #388e3c; /* Verde mais escuro no hover */
+        }
+
+        /* Estilos do rodapé */
+        .rodape {
+            background-color: #004080;
+            color: white;
+            padding: 25px;
+            font-size: 1.1em;
+            text-align: center;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            margin-top: auto; /* Garante que o rodapé "grude" no final do container principal */
+        }
+
+        /* Media queries para responsividade em telas menores */
+        @media (max-width: 768px) {
+            .topo {
+                flex-direction: column;
+                padding: 15px 20px;
+            }
+            .topo .menu {
+                margin-top: 15px;
+            }
+            .topo .menu a {
+                margin: 0 10px;
+                font-size: 0.9em;
+            }
+            .corpo {
+                padding: 20px;
+            }
+            .corpo h1 {
+                font-size: 2em;
+                margin-bottom: 30px;
+            }
+            .cursos-container {
+                grid-template-columns: 1fr; /* Uma única coluna em telas menores */
+                gap: 20px;
+                padding: 0; /* Remove padding extra para ocupar mais espaço */
+                max-width: 95%; /* Permite que o container ocupe mais espaço horizontal em telas pequenas */
+            }
+        }
+
+        /* Media query para telas ainda menores (smartphones) */
+        @media (max-width: 480px) {
+            .topo .logo a {
+                font-size: 1.6em;
+            }
+            .topo .menu a {
+                font-size: 0.8em;
+                margin: 0 5px;
+            }
+            .corpo h1 {
+                font-size: 1.8em;
+            }
+            .curso-item {
+                padding: 20px;
+            }
+            .curso-item h2 {
+                font-size: 1.4em;
+            }
+            .curso-item p {
+                font-size: 0.9em;
+            }
+            .curso-item .saiba-mais {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="principal">
+        <header class="topo">
+            <div class="logo">
+                <a href="index.html">SENAI</a>
+            </div>
+            <nav class="menu">
+                <a href="sobre.html">SOBRE</a>
+                <a href="cursos.html">CURSOS</a>
+                <a href="contato.html">CONTATO</a>
+            </nav>
+        </header>
+
+        <main class="corpo">
+            <h1>Cursos Oferecidos pelo SENAI</h1>
+            
+            <div class="cursos-container">
+                <div class="curso-item">
+                    <h2>Técnico em Desenvolvimento de Sistemas</h2>
+                    <p>
+                        Aprenda a criar softwares e aplicativos para diversas plataformas,
+                        com foco em programação, bancos de dados e lógica de desenvolvimento.
+                    </p>
+                    <a href="#" class="saiba-mais">Saiba Mais</a>
+                </div>
+
+                <div class="curso-item">
+                    <h2>Eletricista Instalador</h2>
+                    <p>
+                        Qualifique-se para atuar na instalação, manutenção e reparo de sistemas
+                        elétricos prediais e industriais, seguindo normas de segurança.
+                    </p>
+                    <a href="#" class="saiba-mais">Saiba Mais</a>
+                </div>
+
+                <div class="curso-item">
+                    <h2>Mecânica Automotiva</h2>
+                    <p>
+                        Desenvolva habilidades para diagnosticar falhas, realizar manutenção
+                        e reparos em veículos automotores, utilizando ferramentas e tecnologias modernas.
+                    </p>
+                    <a href="#" class="saiba-mais">Saiba Mais</a>
+                </div>
+
+                <div class="curso-item">
+                    <h2>Programação Web</h2>
+                    <p>
+                        Explore o universo do front-end e back-end, criando sites dinâmicos e interativos com as tecnologias mais atuais do mercado.
+                    </p>
+                    <a href="#" class="saiba-mais">Saiba Mais</a>
+                </div>
+
+                <div class="curso-item">
+                    <h2>Corte e Costura Industrial</h2>
+                    <p>
+                        Capacitação para operação de máquinas de costura industrial, produção de peças do vestuário e controle de qualidade.
+                    </p>
+                    <a href="#" class="saiba-mais">Saiba Mais</a>
+                </div>
+
+                <div class="curso-item">
+                    <h2>Logística e Produção</h2>
+                    <p>
+                        Gerencie processos de armazenamento, transporte e distribuição, otimizando a cadeia de suprimentos da indústria.
+                    </p>
+                    <a href="#" class="saiba-mais">Saiba Mais</a>
+                </div>
+            </div>
+        </main>
+
+        <footer class="rodape">
+            &copy; 2025 SENAI - Serviço Nacional de Aprendizagem Industrial
+        </footer>
+    </div>
+</body>
+</html>
